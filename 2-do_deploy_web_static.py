@@ -11,6 +11,7 @@ from os import path
 env.hosts = ['100.25.201.83', '52.3.249.62']
 env.user = 'ubuntu'
 
+
 def do_deploy(archive_path):
     """ Deploys """
     if not os.path.exists(archive_path):
@@ -37,5 +38,5 @@ def do_deploy(archive_path):
         run("ln -s {} /data/web_static/current".format(releases_path))
         print("New version deployed!")
         return True
-    except:
+    except Exception as e:
         return False
