@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Simple flask server with three end points /,  /hbnb and /c
+Flask application with six end points
 and listens on port 5000
 """
 
@@ -37,6 +37,22 @@ def c_is_fun(text):
 def python_is_cool(text="is cool"):
     """Route to /c to display 'C' followed by text"""
     return "Python {}".format(text.replace("_", " "))
+
+
+@app.route("/number/<int:n>", strict_slashes=False)
+def is_number(n):
+    """ Route to /number to dispaly n, if its an integer"""
+    if isinstance(n, int):
+        return "{} is a number".format(n)
+
+
+@app.route("/number_template/<int:n>", strict_slashes=False)
+def is_number_template(n):
+    """route to /number_template
+    Return a template if n is an interger
+    """
+    if isinstance(n, int):
+        return render_template("5-number.html", number=n)
 
 
 if __name__ == "__main__":
