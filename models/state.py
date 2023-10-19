@@ -25,7 +25,10 @@ class State(BaseModel, Base):
     if models.storage_t != "db":
         @property
         def cities(self):
-            """getter for list of city instances related to the state"""
+            """
+                Get a list of city instances related to the state if the
+                storage is not db storage
+            """
             city_list = []
             all_cities = models.storage.all(City)
             for city in all_cities.values():
